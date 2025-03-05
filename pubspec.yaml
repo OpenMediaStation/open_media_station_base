@@ -1,10 +1,10 @@
 name: open_media_station_base
 description: "The base package for the Open Media Station Flutter applications."
-version: 0.0.1
+version: 0.0.2
 homepage: https://openmediastation.org
 
 environment:
-  sdk: ^3.5.4
+  sdk: ^3.5.3
   flutter: ">=1.17.0"
 
 dependencies:
