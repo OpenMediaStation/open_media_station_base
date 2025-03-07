@@ -1,3 +1,8 @@
+## 0.0.5
+
+* Added favorite button
+* Added play button
+
 ## 0.0.4
 
 * Work on audiobook support
