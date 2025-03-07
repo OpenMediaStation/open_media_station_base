@@ -1,3 +1,4 @@
+import 'package:open_media_station_base/models/metadata/metadata_audiobook.dart';
 import 'package:open_media_station_base/models/metadata/metadata_book_model.dart';
 import 'package:open_media_station_base/models/metadata/metadata_episode_model.dart';
 import 'package:open_media_station_base/models/metadata/metadata_movie_model.dart';
@@ -16,6 +17,7 @@ class MetadataModel {
   final MetadataSeasonModel? season;
   final MetadataEpisodeModel? episode;
   final MetadataBookModel? book;
+  final MetadataAudiobookModel? audiobook;
 
   MetadataModel({
     required this.id,
@@ -27,6 +29,7 @@ class MetadataModel {
     this.season,
     this.episode,
     this.book,
+    this.audiobook,
   });
 
   // Factory method to create a MetadataModel from JSON
@@ -51,6 +54,9 @@ class MetadataModel {
       book: json['book'] != null
           ? MetadataBookModel.fromJson(json['book'] as Map<String, dynamic>)
           : null,
+      audiobook: json['audiobook'] != null
+          ? MetadataAudiobookModel.fromJson(json['audiobook'] as Map<String, dynamic>)
+          : null,
     );
   }
 
@@ -66,6 +72,7 @@ class MetadataModel {
       'season': season?.toJson(),
       'episode': episode?.toJson(),
       'book': book?.toJson(),
+      'audiobook': audiobook?.toJson(),
     };
   }
 }

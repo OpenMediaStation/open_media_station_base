@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:open_media_station_base/apis/base_api.dart';
 import 'package:open_media_station_base/helpers/preferences.dart';
+import 'package:open_media_station_base/models/inventory/audiobook.dart';
 import 'package:open_media_station_base/models/inventory/episode.dart';
 import 'package:open_media_station_base/models/inventory/inventory_item.dart';
 import 'package:open_media_station_base/helpers/http_wrapper.dart'as http;
@@ -40,6 +41,23 @@ class InventoryApi {
       return Movie.fromJson(jsonResponse);
     } else {
       throw Exception('Failed to load movies');
+    }
+  }
+
+  Future<Audiobook> getAudiobook(String id) async {
+    String apiUrl =
+        "${Preferences.prefs?.getString("BaseUrl")}/api/inventory/audiobook?";
+
+    var headers = await BaseApi.getRefreshedHeaders();
+
+    var response =
+        await http.get(Uri.parse("${apiUrl}id=$id"), headers: headers);
+
+    if (response.statusCode == 200) {
+      dynamic jsonResponse = json.decode(response.body);
+      return Audiobook.fromJson(jsonResponse);
+    } else {
+      throw Exception('Failed to load audiobook');
     }
   }
 
