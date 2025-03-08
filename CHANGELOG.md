@@ -1,3 +1,7 @@
+## 0.0.6
+
+* Added file info row and box
+
 ## 0.0.5
 
 * Added favorite button
