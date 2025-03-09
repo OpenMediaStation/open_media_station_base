@@ -1,3 +1,7 @@
+## 0.0.7
+
+* Added AlphabetBar
+
 ## 0.0.6
 
 * Added file info row and box

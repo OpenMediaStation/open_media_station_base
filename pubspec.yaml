@@ -1,6 +1,6 @@
 name: open_media_station_base
 description: "The base package for the Open Media Station Flutter applications."
-version: 0.0.6
+version: 0.0.7
 homepage: https://openmediastation.org
 
 environment:
@@ -19,6 +19,7 @@ dependencies:
   device_info_plus: ^11.3.0
   cached_network_image: ^3.4.1
   icons_plus: ^5.0.0
+  alphabet_scrollbar: ^0.1.0
 
 dev_dependencies:
   flutter_test:
