@@ -53,27 +53,32 @@ class VideoStream extends MediaStream {
           bitDepth: bitDepth,
         );
 
-        factory VideoStream.fromJson(Map<String, dynamic> json) {
-    return VideoStream(
+  factory VideoStream.fromJson(Map<String, dynamic> json) {
+      return VideoStream(
       index: json['index'] as int,
       codecName: json['codecName'] as String,
       codecLongName: json['codecLongName'] as String,
       codecTagString: json['codecTagString'] as String,
       codecTag: json['codecTag'] as String,
       bitRate: json['bitRate'] as int,
-      startTime: (json['startTime'] as String).tryParseDuration() ?? const Duration(),
-      duration: (json['duration'] as String).tryParseDuration() ?? const Duration(),
+      startTime:
+          (json['startTime'] as String).tryParseDuration() ?? const Duration(),
+      duration:
+          (json['duration'] as String).tryParseDuration() ?? const Duration(),
       language: json['language'] as String?,
       disposition: (json['disposition'] as Map<String, dynamic>?)
           ?.map((key, value) => MapEntry(key, value as bool)),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((key, value) => MapEntry(key, value as String)),
       bitDepth: json['bitDepth'] as int?,
-      avgFrameRate: (json['avgFrameRate'] is String && json['avgFrameRate'].toLowerCase() == "nan") ? double.nan : (json['avgFrameRate'] as num).toDouble(),
+      avgFrameRate: (json['avgFrameRate'] is String &&
+              json['avgFrameRate'].toLowerCase() == "nan")
+          ? double.nan
+          : (json['avgFrameRate'] as num).toDouble(),
       bitsPerRawSample: json['bitsPerRawSample'] as int,
       displayAspectRatio: (
         (json['displayAspectRatio']['Width'] as int?) ?? 0,
-        (json['displayAspectRatio']['Height'] as int?)?? 0
+        (json['displayAspectRatio']['Height'] as int?) ?? 0
       ),
       sampleAspectRatio: (
         (json['sampleAspectRatio']['Width'] as int?) ?? 0,
@@ -82,10 +87,16 @@ class VideoStream extends MediaStream {
       profile: json['profile'] as String?,
       width: json['width'] as int,
       height: json['height'] as int,
-      frameRate: (json['frameRate'] is String && json['frameRate'].toLowerCase() == "nan") ? double.nan : (json['frameRate'] as num).toDouble(),
+      frameRate: (json['frameRate'] is String &&
+              json['frameRate'].toLowerCase() == "nan")
+          ? double.nan
+          : (json['frameRate'] as num).toDouble(),
       pixelFormat: json['pixelFormat'] as String?,
       rotation: json['rotation'] as int,
-      averageFrameRate: (json['averageFrameRate'] is String && json['averageFrameRate'].toLowerCase() == "nan") ? double.nan : (json['averageFrameRate'] as num).toDouble(),
+      averageFrameRate: (json['averageFrameRate'] is String &&
+              json['averageFrameRate'].toLowerCase() == "nan")
+          ? double.nan
+          : (json['averageFrameRate'] as num).toDouble(),
     );
   }
 }

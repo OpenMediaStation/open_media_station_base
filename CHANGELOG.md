@@ -1,3 +1,7 @@
+## 0.0.8
+
+* Added parts
+
 ## 0.0.7
 
 * Added AlphabetBar

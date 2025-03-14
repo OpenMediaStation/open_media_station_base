@@ -15,22 +15,22 @@ class MediaData {
       required this.format});
 
   final Duration? duration;
-  final MediaFormat format;
-  final VideoStream primaryVideoStream;
-  final List<VideoStream> videoStreams;
-  final AudioStream primaryAudioStream;
-  final List<AudioStream> audioStreams;
-  final List<MediaStream> subtitleStreams;
+  final MediaFormat? format;
+  final VideoStream? primaryVideoStream;
+  final List<VideoStream>? videoStreams;
+  final AudioStream? primaryAudioStream;
+  final List<AudioStream>? audioStreams;
+  final List<MediaStream>? subtitleStreams;
 
   factory MediaData.fromJson(Map<String, dynamic> json) {
     return MediaData(
-        duration: (json['duration'] as String).tryParseDuration(),
-        format: MediaFormat.fromJson(json['format']),
-        primaryVideoStream: VideoStream.fromJson(json['primaryVideoStream']),
-        videoStreams: (json['videoStreams'] as Iterable).map((vStr) => VideoStream.fromJson(vStr)).toList(),
+        duration: (json['duration'] as String?).tryParseDuration(),
+        format: json['format'] != null ? MediaFormat.fromJson(json['format']) : null,
+        primaryVideoStream: json['primaryVideoStream'] != null ? VideoStream.fromJson(json['primaryVideoStream']) : null,
+        videoStreams: (json['videoStreams'] as Iterable?)?.map((vStr) => VideoStream.fromJson(vStr)).toList(),
         primaryAudioStream: AudioStream.fromJson(json['primaryAudioStream']),
-        audioStreams: (json['audioStreams'] as Iterable).map((aStr) => AudioStream.fromJson(aStr)).toList(),
-        subtitleStreams: (json['subtitleStreams'] as Iterable).map((subTitleStr) => MediaStream.fromJson(subTitleStr)).toList()
+        audioStreams: (json['audioStreams'] as Iterable?)?.map((aStr) => AudioStream.fromJson(aStr)).toList(),
+        subtitleStreams: (json['subtitleStreams'] as Iterable?)?.map((subTitleStr) => MediaStream.fromJson(subTitleStr)).toList()
         );
   }
 }

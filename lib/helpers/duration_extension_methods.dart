@@ -1,9 +1,13 @@
-extension DurationParser on String {
+extension DurationParser on String? {
   // Statische Methode zur sicheren Umwandlung eines Strings in eine Duration
   Duration? tryParseDuration() {
+    if (this == null) {
+      return null;
+    }
+
     final regex = RegExp(r"^(\d{2}):(\d{2}):(\d{2})(\.(\d{7}))?$");
-    final match = regex.firstMatch(this);
-  
+    final match = regex.firstMatch(this!);
+
     if (match != null) {
       try {
         final hours = int.parse(match.group(1)!);
@@ -28,8 +32,8 @@ extension DurationParser on String {
   }
 }
 
-extension DurationToString on Duration{
-  String toformattedString(){
+extension DurationToString on Duration {
+  String toformattedString() {
     return "${inDays > 0 ? "${inDays}D" : ""}${(inHours - inDays * 24) > 0 ? "${(inHours - inDays * 24)}h" : ""}${(inMinutes - inHours * 60) > 0 ? "${(inMinutes - inHours * 60)}m" : ""}";
   }
 }

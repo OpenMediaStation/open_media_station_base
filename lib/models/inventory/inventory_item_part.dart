@@ -1,29 +1,28 @@
-import 'package:open_media_station_base/models/inventory/inventory_item_part.dart';
-
-class InventoryItemVersion {
+class InventoryItemPart {
   final String id;
   final String path;
   final String? fileInfoId;
   final String? name;
-  final List<InventoryItemPart>? parts;
+  final int? primaryIdentifier;
+  final int? secondaryIdentifier;
 
-  InventoryItemVersion({
+  InventoryItemPart({
     required this.id,
     required this.path,
     this.fileInfoId,
     this.name,
-    this.parts,
+    this.primaryIdentifier,
+    this.secondaryIdentifier
   });
 
-  factory InventoryItemVersion.fromJson(Map<String, dynamic> json) {
-    return InventoryItemVersion(
+  factory InventoryItemPart.fromJson(Map<String, dynamic> json) {
+    return InventoryItemPart(
       id: json['id'] as String,
       path: json['path'] as String,
       fileInfoId: json['fileInfoId'] as String?,
       name: json['name'] as String?,
-      parts: (json['parts'] as List<dynamic>?)
-          ?.map((part) => InventoryItemPart.fromJson(part))
-          .toList(),
+      primaryIdentifier: json['primaryIdentifier'] as int?,
+      secondaryIdentifier: json['secondaryIdentifier'] as int?,
     );
   }
 
@@ -33,7 +32,8 @@ class InventoryItemVersion {
       'path': path,
       'fileInfoId': fileInfoId,
       'name': name,
-      'parts': parts?.map((part) => part.toJson()).toList(),
+      'primaryIdentifier': primaryIdentifier,
+      'secondaryIdentifier': secondaryIdentifier,
     };
   }
 }
