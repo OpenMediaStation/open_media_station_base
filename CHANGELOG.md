@@ -1,3 +1,7 @@
+## 0.1.3
+
+* Added stream api to access bytes
+
 ## 0.1.2
 
 * Fix gallery item size on large screens
