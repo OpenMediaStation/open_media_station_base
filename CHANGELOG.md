@@ -1,3 +1,7 @@
+## 0.1.2
+
+* Fix gallery item size on large screens
+
 ## 0.1.1
 
 * Updated GridItemModel

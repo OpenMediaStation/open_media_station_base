@@ -23,7 +23,11 @@ class Gallery extends StatefulWidget {
 
   final Future<List<InventoryItem>> Function() getInventoryItems;
   final Future<GridItemModel> Function(InventoryItem) getGridItemModel;
-  final void Function(Function(String category), BuildContext context, List<String> disabledCategories, ValueNotifier<bool> filterChanged)? setFilter;
+  final void Function(
+      Function(String category),
+      BuildContext context,
+      List<String> disabledCategories,
+      ValueNotifier<bool> filterChanged)? setFilter;
   final void Function(BuildContext, InventoryItem, GridItemModel) onGridItemTap;
   final String appTitle;
   final Widget settings;
@@ -54,16 +58,15 @@ class _GalleryState extends State<Gallery> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double desiredItemWidth = 150;
-    int crossAxisCount = (screenWidth / desiredItemWidth).floor();
-    double gridMainAxisSpacing = 8.0;
-    double gridCrossAxisSpacing = 8.0;
-
-    double scrollableWidth = screenWidth - 50;
     bool largeScreen = false;
     if (screenWidth > 1000) {
       desiredItemWidth = 300;
       largeScreen = true;
     }
+    int crossAxisCount = (screenWidth / desiredItemWidth).floor();
+    double gridMainAxisSpacing = 8.0;
+    double gridCrossAxisSpacing = 8.0;
+    double scrollableWidth = screenWidth - 50;
     double gridItemHeight =
         (((scrollableWidth - gridCrossAxisSpacing * (crossAxisCount - 1)) /
                 crossAxisCount) /
@@ -137,7 +140,8 @@ class _GalleryState extends State<Gallery> {
           if (widget.setFilter != null)
             IconButton(
               onPressed: () => {
-                widget.setFilter!(setOrUnsetFilter, context, disabledCategories, filterChanged)
+                widget.setFilter!(setOrUnsetFilter, context, disabledCategories,
+                    filterChanged)
               },
               icon: const Icon(Icons.filter_alt),
             ),
