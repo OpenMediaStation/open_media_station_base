@@ -31,7 +31,7 @@ class GridItem extends StatelessWidget {
                     child: Stack(
                       children: [
                         CustomImage(
-                          imageUrl: item.image,
+                          imageUrl: item.image ?? item.posterUrl,
                           fit: BoxFit.cover,
                           width: desiredItemWidth + 150,
                           height: double.infinity,

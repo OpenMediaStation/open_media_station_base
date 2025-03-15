@@ -11,6 +11,10 @@ class GridItemModel {
   bool? isFavorite;
   bool fake = false;
   String? image;
+  int listPosition = 0;
+  String? posterUrl;
+  String? backdropUrl;
+  List<String>? childIds;
 
   GridItemModel({
     required this.inventoryItem,

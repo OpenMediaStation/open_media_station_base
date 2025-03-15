@@ -18,10 +18,12 @@ class Gallery extends StatefulWidget {
     required this.onGridItemTap,
     required this.pictureNotFoundUrl,
     required this.gridItemAspectRatio,
+    required this.setFilter,
   });
 
   final Future<List<InventoryItem>> Function() getInventoryItems;
   final Future<GridItemModel> Function(InventoryItem) getGridItemModel;
+  final void Function(Function(String category), BuildContext context, List<String> disabledCategories, ValueNotifier<bool> filterChanged)? setFilter;
   final void Function(BuildContext, InventoryItem, GridItemModel) onGridItemTap;
   final String appTitle;
   final Widget settings;
@@ -39,6 +41,8 @@ class _GalleryState extends State<Gallery> {
   final ScrollController _scrollController = ScrollController();
   bool searchBarVisible = false;
   bool _descending = false;
+  List<String> disabledCategories = [];
+  ValueNotifier<bool> filterChanged = ValueNotifier<bool>(false);
 
   @override
   void initState() {
@@ -130,6 +134,13 @@ class _GalleryState extends State<Gallery> {
                     _descending = !_descending;
                   }),
               icon: const Icon(Icons.sort_by_alpha)),
+          if (widget.setFilter != null)
+            IconButton(
+              onPressed: () => {
+                widget.setFilter!(setOrUnsetFilter, context, disabledCategories, filterChanged)
+              },
+              icon: const Icon(Icons.filter_alt),
+            ),
           PlatformGlobals.isKiosk
               ? IconButton(
                   onPressed: () => exit(0), icon: const Icon(Icons.close))
@@ -227,13 +238,29 @@ class _GalleryState extends State<Gallery> {
     );
   }
 
+  void setOrUnsetFilter(String category) {
+    var tempList = disabledCategories;
+
+    if (tempList.contains(category)) {
+      tempList.remove(category);
+    } else {
+      tempList.add(category);
+    }
+
+    setState(() {
+      disabledCategories = tempList;
+    });
+  }
+
   List<InventoryItem> filterItems(List<InventoryItem> items) {
     var filteredList = items
-        .where((item) => (searchController.text == "" ||
-            (item.title
-                    ?.toLowerCase()
-                    .contains(searchController.text.toLowerCase()) ??
-                false)))
+        .where((item) =>
+            (searchController.text == "" ||
+                (item.title
+                        ?.toLowerCase()
+                        .contains(searchController.text.toLowerCase()) ??
+                    false)) &&
+            !disabledCategories.contains(item.category))
         .toList();
 
     filteredList.sort((a, b) =>

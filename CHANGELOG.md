@@ -1,3 +1,8 @@
+## 0.1.1
+
+* Updated GridItemModel
+* Added option to filter gallery
+
 ## 0.1.0
 
 * Added gallery and grid
