@@ -1,3 +1,7 @@
+## 0.1.0
+
+* Added gallery and grid
+
 ## 0.0.8
 
 * Added parts

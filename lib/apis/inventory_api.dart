@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:open_media_station_base/apis/base_api.dart';
 import 'package:open_media_station_base/helpers/preferences.dart';
 import 'package:open_media_station_base/models/inventory/audiobook.dart';
+import 'package:open_media_station_base/models/inventory/book.dart';
 import 'package:open_media_station_base/models/inventory/episode.dart';
 import 'package:open_media_station_base/models/inventory/inventory_item.dart';
 import 'package:open_media_station_base/helpers/http_wrapper.dart'as http;
@@ -58,6 +59,23 @@ class InventoryApi {
       return Audiobook.fromJson(jsonResponse);
     } else {
       throw Exception('Failed to load audiobook');
+    }
+  }
+
+  Future<Book> getBook(String id) async {
+    String apiUrl =
+        "${Preferences.prefs?.getString("BaseUrl")}/api/inventory/book?";
+
+    var headers = await BaseApi.getRefreshedHeaders();
+
+    var response =
+        await http.get(Uri.parse("${apiUrl}id=$id"), headers: headers);
+
+    if (response.statusCode == 200) {
+      dynamic jsonResponse = json.decode(response.body);
+      return Book.fromJson(jsonResponse);
+    } else {
+      throw Exception('Failed to load book');
     }
   }
 
