@@ -1,3 +1,7 @@
+## 0.1.5
+
+* Added bookmarks
+
 ## 0.1.4
 
 * Added chapter support
