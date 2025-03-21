@@ -1,3 +1,7 @@
+## 0.1.4
+
+* Added chapter support
+
 ## 0.1.3
 
 * Added stream api to access bytes

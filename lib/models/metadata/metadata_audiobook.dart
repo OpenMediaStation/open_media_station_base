@@ -1,3 +1,5 @@
+import 'package:open_media_station_base/models/metadata/metadata_audiobook_chapter.dart';
+
 class MetadataAudiobookModel {
   final List<String>? authors;
   final String? publisher;
@@ -6,6 +8,7 @@ class MetadataAudiobookModel {
   final int? pageCount;
   final String? language;
   final String? thumbnail;
+  final List<MetadataAudiobookChapter>? chapters;
 
   MetadataAudiobookModel({
     this.authors,
@@ -15,6 +18,7 @@ class MetadataAudiobookModel {
     this.pageCount,
     this.language,
     this.thumbnail,
+    this.chapters,
   });
 
   // Factory method to create MetadataBookModel from JSON
@@ -22,6 +26,9 @@ class MetadataAudiobookModel {
     return MetadataAudiobookModel(
       authors: (json['authors'] as List<dynamic>?)
           ?.map((author) => author as String)
+          .toList(),
+      chapters: (json['chapters'] as List<dynamic>?)
+          ?.map((chapter) => MetadataAudiobookChapter.fromJson(chapter))
           .toList(),
       publisher: json['publisher'] as String?,
       publishedDate: json['publishedDate'] as String?,
@@ -40,6 +47,7 @@ class MetadataAudiobookModel {
       'description': description,
       'language': language,
       'thumbnail': thumbnail,
+      'chapters': chapters,
     };
   }
 }
