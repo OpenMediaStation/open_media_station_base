@@ -66,7 +66,9 @@ class _GalleryState extends State<Gallery> {
     int crossAxisCount = (screenWidth / desiredItemWidth).floor();
     double gridMainAxisSpacing = 8.0;
     double gridCrossAxisSpacing = 8.0;
-    double scrollableWidth = screenWidth - 50;
+    bool scrollbarVisible = true;
+    double scrollbarWidth = 50;
+    double scrollableWidth = screenWidth - scrollbarWidth;
     double gridItemHeight =
         (((scrollableWidth - gridCrossAxisSpacing * (crossAxisCount - 1)) /
                 crossAxisCount) /
@@ -187,6 +189,7 @@ class _GalleryState extends State<Gallery> {
 
                 List<InventoryItem> items = snapshot.data!;
                 List<InventoryItem> filteredItems = filterItems(items);
+                scrollbarVisible = filteredItems.length ~/ crossAxisCount > 5;
 
                 return Stack(
                   children: [
@@ -194,7 +197,7 @@ class _GalleryState extends State<Gallery> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         SizedBox(
-                          width: scrollableWidth,
+                          width: scrollbarVisible ? scrollableWidth : screenWidth,
                           child: RefreshIndicator(
                             displacement: 40,
                             onRefresh: () async {
@@ -223,7 +226,7 @@ class _GalleryState extends State<Gallery> {
                         const Expanded(child: Text(''))
                       ],
                     ),
-                    if (filteredItems.length ~/ crossAxisCount > 5)
+                    if (scrollbarVisible)
                       AlphabetBar(
                         scrollController: _scrollController,
                         filteredItems: filteredItems,
