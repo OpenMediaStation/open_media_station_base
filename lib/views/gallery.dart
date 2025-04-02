@@ -69,6 +69,7 @@ class _GalleryState extends State<Gallery> {
     bool scrollbarVisible = true;
     double scrollbarWidth = 50;
     double scrollableWidth = screenWidth - scrollbarWidth;
+    double scrollablePadding = 8;
     double gridItemHeight =
         (((scrollableWidth - gridCrossAxisSpacing * (crossAxisCount - 1)) /
                 crossAxisCount) /
@@ -175,7 +176,7 @@ class _GalleryState extends State<Gallery> {
         children: [
           Padding(
             padding:
-                const EdgeInsets.only(right: 0, left: 8, top: 8, bottom: 8),
+                EdgeInsets.all(scrollablePadding),
             child: FutureBuilder<List<InventoryItem>>(
               future: futureItems,
               builder: (context, snapshot) {
@@ -197,7 +198,7 @@ class _GalleryState extends State<Gallery> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         SizedBox(
-                          width: scrollbarVisible ? scrollableWidth : screenWidth,
+                          width: scrollbarVisible ? scrollableWidth : (screenWidth - scrollablePadding * 2),
                           child: RefreshIndicator(
                             displacement: 40,
                             onRefresh: () async {
