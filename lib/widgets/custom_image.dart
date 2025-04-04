@@ -38,12 +38,10 @@ class CustomImage extends StatelessWidget {
       imageUrlFinal = pictureNotFoundUrl;
     }
 
-    var placeholder = CachedNetworkImage(
-        imageUrl: "$imageUrlFinal?LQIP=true", 
-        httpHeaders: BaseApi.getHeaders(), 
-        alignment: alignment ?? Alignment.center,
-        fit: fit,
-        );
+    var placeholder = SizedBox(
+      width: width,
+      height: height,
+    );
 
     if (imageUrlFinal == null) {
       return placeholder;
