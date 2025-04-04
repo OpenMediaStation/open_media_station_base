@@ -6,6 +6,7 @@ class MetadataBookModel {
   final int? pageCount;
   final String? language;
   final String? thumbnail;
+  final String? thumbnailBlurHash;
 
   MetadataBookModel({
     this.authors,
@@ -15,6 +16,7 @@ class MetadataBookModel {
     this.pageCount,
     this.language,
     this.thumbnail,
+    this.thumbnailBlurHash,
   });
 
   // Factory method to create MetadataBookModel from JSON
@@ -29,6 +31,7 @@ class MetadataBookModel {
       pageCount: json['pageCount'] as int?,
       language: json['language'] as String?,
       thumbnail: json['thumbnail'] as String?,
+      thumbnailBlurHash: json.containsKey('thumbnailBlurHash') ? json['thumbnailBlurHash'] as String? : null
     );
   }
 
@@ -42,6 +45,7 @@ class MetadataBookModel {
       'pageCount': pageCount,
       'language': language,
       'thumbnail': thumbnail,
+      'thumbnailBlurHash': thumbnailBlurHash,
     };
   }
 }

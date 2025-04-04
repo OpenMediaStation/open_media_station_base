@@ -13,7 +13,9 @@ class GridItemModel {
   String? image;
   int listPosition = 0;
   String? posterUrl;
+  String? posterBlurHash;
   String? backdropUrl;
+  String? backdropBlurHash;
   List<String>? childIds;
 
   GridItemModel({

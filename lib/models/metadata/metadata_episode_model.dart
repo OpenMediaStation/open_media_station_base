@@ -14,6 +14,7 @@ class MetadataEpisodeModel {
   final String? country;
   final String? awards;
   final String? backdrop;
+  final String? backdropBlurHash;
   final List<Rating>? ratings;
   final String? metascore;
   final String? imdbRating;
@@ -39,6 +40,7 @@ class MetadataEpisodeModel {
     required this.country,
     required this.awards,
     required this.backdrop,
+    this.backdropBlurHash,
     required this.ratings,
     required this.metascore,
     required this.imdbRating,
@@ -76,6 +78,7 @@ class MetadataEpisodeModel {
       country: json['country'] as String?,
       awards: json['awards'] as String?,
       backdrop: backdrop,
+      backdropBlurHash: json.containsKey('backdropBlurHash') ? json['backdropBlurHash'] as String? : null,
       ratings: ratings,
       metascore: json['metascore'] as String?,
       imdbRating: json['imdbRating'] as String?,
@@ -104,6 +107,7 @@ class MetadataEpisodeModel {
       'country': country,
       'awards': awards,
       'backdrop': backdrop,
+      'backdropBlurHash': backdropBlurHash,
       'ratings': ratings?.map((rating) => rating.toJson()).toList(),
       'metascore': metascore,
       'imdbRating': imdbRating,

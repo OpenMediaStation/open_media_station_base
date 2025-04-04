@@ -8,6 +8,7 @@ class MetadataAudiobookModel {
   final int? pageCount;
   final String? language;
   final String? thumbnail;
+  final String? thumbnailBlurHash;
   final List<MetadataAudiobookChapter>? chapters;
 
   MetadataAudiobookModel({
@@ -18,6 +19,7 @@ class MetadataAudiobookModel {
     this.pageCount,
     this.language,
     this.thumbnail,
+    this.thumbnailBlurHash,
     this.chapters,
   });
 
@@ -35,6 +37,7 @@ class MetadataAudiobookModel {
       description: json['description'] as String?,
       language: json['language'] as String?,
       thumbnail: json['thumbnail'] as String?,
+      thumbnailBlurHash: json.containsKey('thumbnailBlurHash') ? json['thumbnailBlurHash'] as String? : null,
     );
   }
 
@@ -47,6 +50,7 @@ class MetadataAudiobookModel {
       'description': description,
       'language': language,
       'thumbnail': thumbnail,
+      'thumbnailBlurHash': thumbnailBlurHash,
       'chapters': chapters,
     };
   }

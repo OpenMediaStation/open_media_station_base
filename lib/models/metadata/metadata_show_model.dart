@@ -14,8 +14,11 @@ class MetadataShowModel {
   final String? country;
   final String? awards;
   final String? poster;
+  final String? posterBlurHash;
   final String? logo;
+  final String? logoBlurHash;
   final String? backdrop;
+  final String? backdropBlurHash;
   final List<Rating>? ratings;
   final String? metascore;
   final String? imdbRating;
@@ -41,8 +44,11 @@ class MetadataShowModel {
     required this.country,
     required this.awards,
     required this.poster,
+    this.posterBlurHash,
     required this.logo,
+    this.logoBlurHash,
     required this.backdrop,
+    this.backdropBlurHash,
     required this.ratings,
     required this.metascore,
     required this.imdbRating,
@@ -80,8 +86,11 @@ class MetadataShowModel {
       country: json['country'] as String?,
       awards: json['awards'] as String?,
       poster: poster,
+      posterBlurHash: json.containsKey('posterBlurHash') ? json['posterBlurHash'] as String? : null,
       logo: json['logo'] as String?,
+      logoBlurHash: json.containsKey('logoBlurHash') ? json['logoBlurHash'] as String? : null,
       backdrop: json['backdrop'] as String?,
+      backdropBlurHash: json.containsKey('backdropBlurHash') ? json['backdropBlurHash'] as String? : null,
       ratings: ratings,
       metascore: json['metascore'] as String?,
       imdbRating: json['imdbRating'] as String?,
@@ -110,8 +119,11 @@ class MetadataShowModel {
       'country': country,
       'awards': awards,
       'poster': poster,
+      'posterBlurHash': posterBlurHash,
       'logo': logo,
+      'logoBlurHash': logoBlurHash,
       'backdrop': backdrop,
+      'backdropBlurHash': backdropBlurHash,
       'ratings': ratings?.map((rating) => rating.toJson()).toList(),
       'metascore': metascore,
       'imdbRating': imdbRating,

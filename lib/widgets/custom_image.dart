@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:open_media_station_base/apis/base_api.dart';
 
 class CustomImage extends StatelessWidget {
@@ -7,6 +8,7 @@ class CustomImage extends StatelessWidget {
     super.key,
     required this.imageUrl,
     required this.pictureNotFoundUrl,
+    this.blurHash,
     this.fit,
     this.width,
     this.height,
@@ -15,6 +17,7 @@ class CustomImage extends StatelessWidget {
     this.disableAdaptiveImage = false,
   });
 
+  final String? blurHash;
   final String? imageUrl;
   final BoxFit? fit;
   final double? width;
@@ -38,10 +41,14 @@ class CustomImage extends StatelessWidget {
       imageUrlFinal = pictureNotFoundUrl;
     }
 
-    var placeholder = SizedBox(
+    Widget placeholder = SizedBox(
       width: width,
       height: height,
     );
+
+    if(blurHash != null){
+      placeholder = BlurHash(hash: blurHash!);
+    }
 
     if (imageUrlFinal == null) {
       return placeholder;

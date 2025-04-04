@@ -9,6 +9,7 @@ class InventoryItem {
   final String? folderPath;
   final List<InventoryItemVersion>? versions;
   final List<InventoryItemAddon>? addons;
+  final String? displayImageBlurHash;
 
   InventoryItem({
     required this.id,
@@ -18,6 +19,7 @@ class InventoryItem {
     required this.folderPath,
     required this.versions,
     required this.addons,
+    this.displayImageBlurHash
   });
 
   factory InventoryItem.fromJson(Map<String, dynamic> json) {
@@ -35,6 +37,7 @@ class InventoryItem {
           ?.map((addon) =>
               InventoryItemAddon.fromJson(addon as Map<String, dynamic>))
           .toList(),
+      displayImageBlurHash: json.containsKey('displayImageBlurHash') ? json['displayImageBlurHash'] as String? : null
     );
   }
 
@@ -47,6 +50,7 @@ class InventoryItem {
       'folderPath': folderPath,
       'versions': versions,
       'addons': addons,
+      'displayImageBlurHash': displayImageBlurHash
     };
   }
 }
