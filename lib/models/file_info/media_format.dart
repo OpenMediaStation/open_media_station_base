@@ -1,4 +1,3 @@
-
 import 'package:open_media_station_base/helpers/duration_extension_methods.dart';
 
 class MediaFormat {
@@ -22,13 +21,27 @@ class MediaFormat {
   factory MediaFormat.fromJson(Map<String, dynamic> json) {
     var probeScoreFromJson = json['probeScore'];
     var bitRateFromJson = json['bitRate'];
+
+    final tagsRaw = json['tags'];
+
+    final Map<String, String>? tagsMap = (tagsRaw is Map)
+        ? tagsRaw.map(
+            (k, v) => MapEntry(k.toString(), v?.toString() ?? ''),
+          )
+        : null;
+
     return MediaFormat(
-        duration: (json['duration'] as String).tryParseDuration(),
-        formatName: json['formatName'],
-        formatLongName: json['formatLongName'],
-        streamCount: json['streamCount'],
-        probeScore: probeScoreFromJson is double ? probeScoreFromJson : (probeScoreFromJson as int).toDouble(),
-        bitRate: bitRateFromJson is double ? bitRateFromJson : (bitRateFromJson as int).toDouble(),
-        tags: (json['tags'] as Map<String, dynamic>).map((key,value) => MapEntry(key, value.toString())));
+      duration: (json['duration'] as String).tryParseDuration(),
+      formatName: json['formatName'],
+      formatLongName: json['formatLongName'],
+      streamCount: json['streamCount'],
+      probeScore: probeScoreFromJson is double
+          ? probeScoreFromJson
+          : (probeScoreFromJson as int).toDouble(),
+      bitRate: bitRateFromJson is double
+          ? bitRateFromJson
+          : (bitRateFromJson as int).toDouble(),
+      tags: tagsMap,
+    );
   }
 }

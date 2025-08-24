@@ -77,12 +77,12 @@ class VideoStream extends MediaStream {
           : (json['avgFrameRate'] as num).toDouble(),
       bitsPerRawSample: json['bitsPerRawSample'] as int,
       displayAspectRatio: (
-        (json['displayAspectRatio']['Width'] as int?) ?? 0,
-        (json['displayAspectRatio']['Height'] as int?) ?? 0
+        (json['displayAspectRatio']?['Width'] as int?) ?? 0,
+        (json['displayAspectRatio']?['Height'] as int?) ?? 0
       ),
       sampleAspectRatio: (
-        (json['sampleAspectRatio']['Width'] as int?) ?? 0,
-        (json['sampleAspectRatio']['Height'] as int?) ?? 0
+        (json['sampleAspectRatio']?['Width'] as int?) ?? 0,
+        (json['sampleAspectRatio']?['Height'] as int?) ?? 0
       ),
       profile: json['profile'] as String?,
       width: json['width'] as int,

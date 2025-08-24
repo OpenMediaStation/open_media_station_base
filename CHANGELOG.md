@@ -1,3 +1,7 @@
+## 0.1.8
+
+* Fix model parsing
+
 ## 0.1.7
 
 * Downgrade oauth 2
