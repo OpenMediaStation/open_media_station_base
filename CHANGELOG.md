@@ -1,3 +1,7 @@
+## 0.1.9
+
+* Update oauth2_client
+
 ## 0.1.8
 
 * Fix model parsing

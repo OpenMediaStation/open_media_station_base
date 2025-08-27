@@ -24,6 +24,7 @@ class LoginManager {
         tokenUrl: authInfo.tokenUrl,
         redirectUri: "my.test.app:/oauth2redirect", // TODO
         customUriScheme: "my.test.app",
+      
       );
     } else if (PlatformGlobals.isMobile) {
       client = OAuth2Client(
@@ -80,6 +81,7 @@ class LoginManager {
       webAuthClient: baseWebAuth,
       state: state,
       codeVerifier: codeVerifier,
+      webAuthOpts: {"useWebview": false},
     );
 
     var refreshToken = tknResponse.refreshToken;
