@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:open_media_station_base/auth/login_manager.dart';
 import 'package:open_media_station_base/globals/auth_globals.dart';
+import 'package:open_media_station_base/globals/logging.dart';
 import 'package:open_media_station_base/helpers/preferences.dart';
 
 class BaseApi {
@@ -52,7 +53,7 @@ class BaseApi {
       // Check if the token is about to expire within the buffer period
       return exp - currentTimeInSeconds <= bufferInSeconds;
     } catch (e) {
-      print("Error decoding token: $e");
+      Logging.logger.e("Error decoding token: $e", error: e);
       return true; // Assuming it's expired if there's an error
     }
   }

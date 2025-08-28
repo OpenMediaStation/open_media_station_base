@@ -1,3 +1,7 @@
+## 0.1.10
+
+* Added logging
+
 ## 0.1.9
 
 * Update oauth2_client
